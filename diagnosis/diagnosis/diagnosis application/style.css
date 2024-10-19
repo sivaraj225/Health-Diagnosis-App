@@ -1,0 +1,117 @@
+/* General Styles for Mobile */
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #000244;
+}
+
+/* Hero Section */
+.logo{
+    height: 50px;
+    width: 50px;
+}
+.img-fluid{
+    display: inline;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    left: -90px;
+}
+.hero {
+    background: url('hero-bg-mobile.jpg') no-repeat center center/cover;
+    height: 80vh;
+    color: #000244;
+}
+
+.hero h1 {
+    font-size: 2rem;
+}
+
+.hero p {
+    font-size: 1rem;
+}
+
+.container{
+    
+}
+/* Features Section */
+.feature-box {
+    
+    align-items: center; /* Center image and text vertically */
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+    height: 150px;
+    width:100px; /* Ensure the box doesn't exceed container width */
+    overflow: hidden; /* Prevent overflow issues */
+}
+
+.feature-box img {
+    width: 20px; /* Adjust to appropriate size */
+    height: 60px;
+    flex-shrink: 0; /* Prevent the image from shrinking too small */
+    margin-right: 15px; /* Add space between image and text */
+    max-width: 100%; /* Ensure the image stays within container bounds */
+    object-fit: contain; /* Ensure the image scales well */
+}
+
+.feature-box h4, .feature-box p {
+    margin: 0;
+    text-align: left;
+    flex-grow: 1; /* Allow text to grow within the container */
+}
+
+.feature-box h4 {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.feature-box p {
+    font-size: 0.9rem;
+}
+
+
+/* About Us Section */
+.about {
+    background-color: #f9f9f9;
+}
+
+.about h2 {
+    font-size: 1.8rem;
+}
+
+.about p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Call to Action Section */
+.cta {
+    background-color: #000244;
+    color: rgba(255, 255, 255, 0.879);
+}
+
+.cta h2 {
+    font-size: 2rem;
+}
+
+.cta p {
+    font-size: 1rem;
+}
+
+.cta .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Footer Section */
+footer {
+    background-color: #222;
+}
+
+footer p {
+    font-size: 0.8rem;
+    margin: 0;
+}

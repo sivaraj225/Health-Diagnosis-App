@@ -1,0 +1,60 @@
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #000244;
+}
+
+.logo{
+    height: 50px;
+    width: 50px;
+}
+
+.navbar-brand{
+    color: #2afb0048;
+}
+/* Features Section */
+.feature-box {
+    padding: 15px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+    margin-bottom: 20px;
+}
+
+.feature-box h4 {
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.feature-box p {
+    font-size: 0.9rem;
+}
+
+/* Call to Action Section */
+.cta {
+    background-color: #000244;
+    color: rgba(255, 255, 255, 0.879);
+}
+
+.cta h2 {
+    font-size: 2rem;
+}
+
+.cta p {
+    font-size: 1rem;
+}
+
+.cta .btn {
+    padding: 10px 20px;
+    font-size: 1rem;
+}
+
+/* Footer Section */
+footer {
+    background-color: #222;
+}
+
+footer p {
+    font-size: 0.8rem;
+    margin: 0;
+}

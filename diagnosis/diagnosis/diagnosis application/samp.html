@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3 Column Layout</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around; /* Space between the columns */
+            align-items: center;
+            flex-wrap: wrap; /* Ensures responsiveness */
+            width: 100px;
+            margin: 50px auto;
+        }
+
+        .section {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 30%; /* Each section takes up 30% of the row */
+            margin: 10px;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease; /* For hover effect */
+        }
+
+        .section:hover {
+            transform: translateY(-10px); /* Lift the section on hover */
+        }
+
+        .section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .section-text {
+            font-size: 18px;
+            color: #333;
+            margin-top: 15px;
+            font-weight: 500;
+        }
+
+        /* Responsive design for small screens */
+        @media (max-width: 768px) {
+            .section {
+                width: 100%; /* Stack sections on top of each other on small screens */
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Section 1 -->
+        <div class="section">
+            <img src="https://via.placeholder.com/300x200" alt="Image 1">
+            <div class="section-text">Section 1 Text</div>
+        </div>
+
+        <!-- Section 2 -->
+        <div class="section">
+            <img src="https://via.placeholder.com/300x200" alt="Image 2">
+            <div class="section-text">Section 2 Text</div>
+        </div>
+
+        <!-- Section 3 -->
+        <div class="section">
+            <img src="https://via.placeholder.com/300x200" alt="Image 3">
+            <div class="section-text">Section 3 Text</div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #000244;
+        }
+
+        @media (min-width: 769px) {
+            body {
+                display: none;
+            }
+
+            body::before {
+                content: 'This application is only available on mobile devices.';
+                display: block;
+                text-align: center;
+                margin-top: 50px;
+                font-size: 20px;
+                color: #65df07;
+            }
+        }
+        
+        .container {
+            width: 90%;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #555;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        button[type="submit"],
+        .download-btn,
+        .edit-btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-size: 18px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        .profile-info {
+            margin-bottom: 30px;
+        }
+
+        .profile-info div {
+            padding: 10px 0;
+        }
+
+        .edit-btn {
+            margin-top: 20px;
+            width:60px;
+            height: 25px;
+            padding: 1px;
+            background-color: #28a745;
+            position: relative;
+            top: -10px;
+            left: 0px;
+            font-size: 14px;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #218838;
+        }
+
+        .download-btn {
+            margin-left: 90px;
+            width: 210px;
+            margin-top: 20px;
+            background-color: #013cb3;
+            color: white;
+            border-style: none;
+        }
+
+        .download-btn:hover {
+            background-color: #013cb3e2;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h2 style="font-weight: 700;">User Profile</h2>
+
+        <!-- Profile Information Section -->
+        <div class="profile-info" id="profile-info">
+            <div><strong>Name:</strong> <span id="user-name">John Doe</span></div>
+            <div><strong>Email:</strong> <span id="user-email">john.doe@example.com</span></div>
+            <div><strong>Phone Number:</strong> <span id="user-phone">+1234567890</span></div>
+            <div><strong>Age:</strong> <span id="user-age">30</span></div>
+            <div><strong>Date of Birth:</strong> <span id="user-dob">1994-10-18</span></div>
+            <!-- Edit Button -->
+            <button class="edit-btn" id="edit-btn">Edit</button>
+            <!-- Download Report Button -->
+            <h4 style="margin-top: 20px; text-align: center;font-weight: 700;">Download Report</h4>
+            <button class="download-btn" id="download-btn">Download PDF Report</button>
+        </div>
+
+        <!-- Edit Profile Form -->
+        <form id="edit-profile-form" class="hidden">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" value="John Doe" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" value="john.doe@example.com" required>
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" id="phone" value="+1234567890" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age</label>
+                <input type="number" id="age" value="30" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" value="1994-10-18" required>
+            </div>
+            <button type="submit">Save Changes</button>
+            <button type="button" class="edit-btn" id="cancel-btn">Cancel</button>
+        </form>
+    </div>
+
+    <!-- Include jsPDF library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+        // Get elements
+        const profileInfo = document.getElementById('profile-info');
+        const editProfileForm = document.getElementById('edit-profile-form');
+        const editBtn = document.getElementById('edit-btn');
+        const cancelBtn = document.getElementById('cancel-btn');
+        const downloadBtn = document.getElementById('download-btn');
+
+        // Handle the Edit button click
+        editBtn.addEventListener('click', function () {
+            profileInfo.classList.add('hidden'); // Hide profile info
+            editProfileForm.classList.remove('hidden'); // Show edit form
+        });
+
+        // Handle the Cancel button click
+        cancelBtn.addEventListener('click', function () {
+            editProfileForm.classList.add('hidden'); // Hide edit form
+            profileInfo.classList.remove('hidden'); // Show profile info
+        });
+
+        // Handle form submission
+        document.getElementById('edit-profile-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting normally
+
+            // Get values from input fields
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const age = document.getElementById('age').value;
+            const dob = document.getElementById('dob').value;
+
+            // Update profile info display
+            document.getElementById('user-name').textContent = name;
+            document.getElementById('user-email').textContent = email;
+            document.getElementById('user-phone').textContent = phone;
+            document.getElementById('user-age').textContent = age;
+            document.getElementById('user-dob').textContent = dob;
+
+            // Hide edit form and show updated profile info
+            editProfileForm.classList.add('hidden');
+            profileInfo.classList.remove('hidden');
+
+            // Optional: Reset the form fields after saving
+            this.reset();
+        });
+
+        // Handle the Download button click
+        downloadBtn.addEventListener('click', function () {
+            const { jsPDF } = window.jspdf; // Access jsPDF from the global window object
+            const doc = new jsPDF();
+
+            // Set PDF content
+            const name = document.getElementById('user-name').textContent;
+            const email = document.getElementById('user-email').textContent;
+            const phone = document.getElementById('user-phone').textContent;
+            const age = document.getElementById('user-age').textContent;
+            const dob = document.getElementById('user-dob').textContent;
+
+            doc.text(`User Profile Report`, 10, 10);
+            doc.text(`Name: ${name}`, 10, 20);
+            doc.text(`Email: ${email}`, 10, 30);
+            doc.text(`Phone Number: ${phone}`, 10, 40);
+            doc.text(`Age: ${age}`, 10, 50);
+            doc.text(`Date of Birth: ${dob}`, 10, 60);
+
+            // Save the PDF
+            doc.save('user-profile-report.pdf');
+        });
+    </script>
+
+</body>
+
+</html>
